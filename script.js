@@ -1,13 +1,13 @@
 const movies = [
     {
         title: "Movie 1",
-        image: "https://filipinotimes.net/wp-content/uploads/2019/08/Screen-Shot-2019-08-05-at-1.35.13-PM-1.png",
-        video: "https://drive.google.com/uc?export=preview&id=1SZSgeHm52VtmkvEB8CBGq5UFNiRGOot0"
+        image: "link_to_image_1.jpg", // Replace with your actual image link
+        video: "https://drive.google.com/uc?export=preview&id=1SZSgeHm52VtmkvEB8CBGq5UFNiRGOot0" // Replace with your actual video ID
     },
     {
         title: "Movie 2",
-        image: "link_to_image_2.jpg",
-        video: "link_to_video_2.mp4"
+        image: "link_to_image_2.jpg", // Replace with your actual image link
+        video: "https://drive.google.com/uc?export=preview&id=ANOTHER_FILE_ID" // Replace with another video ID
     },
     // Add more movie objects as needed
 ];
@@ -23,15 +23,20 @@ movies.forEach(movie => {
     
     const movieTitle = document.createElement('h3');
     movieTitle.textContent = movie.title;
+
+    const videoPlayer = document.createElement('video');
+    videoPlayer.setAttribute('width', '320');
+    videoPlayer.setAttribute('height', '240');
+    videoPlayer.setAttribute('controls', '');
     
-    const watchButton = document.createElement('button');
-    watchButton.textContent = "Watch Movie";
-    watchButton.onclick = () => {
-        window.open(movie.video, '_blank');
-    };
+    const source = document.createElement('source');
+    source.src = movie.video;
+    source.type = 'video/mp4';
+    
+    videoPlayer.appendChild(source);
 
     movieDiv.appendChild(movieImage);
     movieDiv.appendChild(movieTitle);
-    movieDiv.appendChild(watchButton);
+    movieDiv.appendChild(videoPlayer);
     movieContainer.appendChild(movieDiv);
 });

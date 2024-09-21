@@ -37,4 +37,9 @@ button {
     border: none;
     padding: 10px;
     cursor: pointer;
+    margin-top: 5px;
+}
+
+video {
+    margin-top: 5px;
 }

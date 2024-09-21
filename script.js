@@ -27,24 +27,27 @@ movies.forEach(movie => {
     const watchButton = document.createElement('button');
     watchButton.textContent = "Watch Video";
     watchButton.onclick = () => {
+        const existingVideo = movieDiv.querySelector('video');
+        if (existingVideo) {
+            // If a video is already playing, just toggle its visibility
+            existingVideo.style.display = existingVideo.style.display === 'none' ? 'block' : 'none';
+            return;
+        }
+        
         const videoPlayer = document.createElement('video');
         videoPlayer.setAttribute('width', '320');
         videoPlayer.setAttribute('height', '240');
         videoPlayer.setAttribute('controls', '');
-
+        videoPlayer.style.display = 'block'; // Show the player
+        
         const source = document.createElement('source');
         source.src = movie.video;
         source.type = 'video/mp4';
 
         videoPlayer.appendChild(source);
-        
-        // Clear any previous video player
-        const existingVideo = movieDiv.querySelector('video');
-        if (existingVideo) {
-            movieDiv.removeChild(existingVideo);
-        }
-        
         movieDiv.appendChild(videoPlayer);
+        videoPlayer.load(); // Load the video
+        videoPlayer.play();  // Automatically play the video
     };
 
     movieDiv.appendChild(movieImage);

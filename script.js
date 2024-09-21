@@ -22,20 +22,8 @@ movies.forEach(movie => {
     const watchButton = document.createElement('button');
     watchButton.textContent = "Watch Video";
     watchButton.onclick = () => {
-        const existingIframe = movieDiv.querySelector('iframe');
-        if (existingIframe) {
-            existingIframe.style.display = existingIframe.style.display === 'none' ? 'block' : 'none';
-            return;
-        }
-
-        const iframe = document.createElement('iframe');
-        iframe.src = movie.video;
-        iframe.width = "640";
-        iframe.height = "480";
-        iframe.allow = "autoplay";
-        iframe.style.display = 'block'; // Show the iframe
-        
-        movieDiv.appendChild(iframe);
+        // Redirect to video.html with video link as a query parameter
+        window.location.href = `video.html?video=${encodeURIComponent(movie.video)}`;
     };
 
     movieDiv.appendChild(movieImage);
